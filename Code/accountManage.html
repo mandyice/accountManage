@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>项目管理</title>
+
+    <!-- 移动设备优先 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 引入bootstrap相关的库（3个） -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/daterangepicker.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/select2.css">
+    <script src="lib/bootstrap/dist/js/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/bootstrap/dist/js/moment.js"></script>
+    <script src="lib/bootstrap/dist/js/jquery.dataTables.js"></script>
+    <script src="lib/bootstrap/dist/js/daterangepicker.js"></script>
+    <script src="lib/bootstrap/dist/js/select2.js"></script>
+
+    <style>
+
+        table th,table td{
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+<body>
+<!-- 页面的模态（对话框）框 -->
+
+<div class="modal fade" id="realAuthDlg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 对话框头部 （标题）-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">账户管理</h4>
+            </div>
+            <!-- 对话框正文部分 -->
+            <div class="modal-body">
+                <div class="container-fluid" id="formContent">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="code" class="col-sm-2 control-label">编码</label>
+                            <div class="col-sm-10">
+                                <input id="code" name="code" value="" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label">名称</label>
+                            <div class="col-sm-10">
+                                <input id="username" name="username" value="" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="remark" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <input id="remark" name="remark" value="" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="state" id="inlineRadio1" value="option1" checked="checked"> 状态1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="state" id="inlineRadio2" value="option2"> 状态2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="createtime" class="col-sm-2 control-label">创建时间</label>
+                            <div class="col-sm-10">
+                                <input id="createtime" name="createtime" value="07/01/2015" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="numtype" class="col-sm-2 control-label">账号类型</label>
+                            <div class="col-sm-10">
+                                <select name="numtype" id="numtype" class="form-control">
+                                    <option value="类型1">类型1</option>
+                                    <option value="类型2">类型2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 对话框底部（操作按钮） -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="save">保存</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <header>
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        账户管理
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 页面主内容-->
+    <div class="el-main container">
+        <div class="row  offcanvas offcanvas-left">
+            <div class="col-sm-12 el-main-center">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h4 class="pull-left">账户管理</h4>
+                        <div class="pull-right">
+                            <a href="#" class="btn btn-success" data-cmd="create" data-toggle="modal" data-target="#realAuthDlg">添加</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <!-- 页面内容 -->
+                        <table id="example" class="table" >
+                            <thead>
+                            <tr>
+                                <th field="code">编码</th>
+                                <th field="username">名称</th>
+                                <th field="remark">备注</th>
+                                <th field="state">状态</th>
+                                <th field="createtime">创建时间</th>
+                                <th field="endtime">最后登录时间</th>
+                                <th field="numtype">账户类型</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    账户管理
+                </a>
+            </div>
+        </nav>
+    </footer>
+</div>
+
+
+<script src="lib/bootstrap/dist/js/jquery.bootstrap.js"></script>
+<script src="js/account.js"></script>
+
+</body>
+</html>
